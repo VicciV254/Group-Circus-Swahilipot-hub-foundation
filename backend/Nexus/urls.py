@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenRefreshView
 from apps.accounts.views import CustomTokenObtainPairView, LogoutView, MFAVerifyView
-from debug_auth.debug_auth import debug_auth
+# from debug_auth.debug_auth import debug_auth
 
 urlpatterns = [
     # Admin
