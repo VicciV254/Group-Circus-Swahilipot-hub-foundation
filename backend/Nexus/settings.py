@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -120,18 +121,11 @@ ASGI_APPLICATION = 'Nexus.asgi.application'
 
 # ── Database ──────────────────────────────────────────────────────────────────
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', '5432'),
-        'OPTIONS': {
-            'options': '-c search_path=public',
-        },
-        'CONN_MAX_AGE': 60,
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 # ── Redis / Cache ─────────────────────────────────────────────────────────────
@@ -139,11 +133,8 @@ REDIS_URL = config('REDIS_URL')
 
 CACHES = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': f"{REDIS_URL}/1",
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
+    'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+    'LOCATION': config('REDIS_URL'),
     }
 }
 
@@ -166,8 +157,11 @@ CHANNEL_LAYERS = {
 }
 
 # ── Celery ────────────────────────────────────────────────────────────────────
-CELERY_BROKER_URL = f"{REDIS_URL}/1"
-CELERY_RESULT_BACKEND = f"{REDIS_URL}/1"
+# CELERY_BROKER_URL = f"{REDIS_URL}/1"
+# CELERY_RESULT_BACKEND = f"{REDIS_URL}/1"
+
+CELERY_BROKER_URL =config('REDIS_URL')
+CELERY_RESULT_BACKEND = config('REDIS_URL')
 
 # ── Auth ──────────────────────────────────────────────────────────────────────
 AUTH_USER_MODEL = 'accounts.User'

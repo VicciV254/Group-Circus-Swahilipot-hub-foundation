@@ -83,3 +83,6 @@ xlsxwriter
 python-pptx
 
 openrouter
+
+dj-database-url
+django-storages[s3]
