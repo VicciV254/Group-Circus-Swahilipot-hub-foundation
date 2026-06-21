@@ -93,10 +93,8 @@ class Migration(migrations.Migration):
             ),
         ),
 
-        # UserPresence: add updated_at if missing
-        migrations.AddField(
-            model_name="userpresence",
-            name="updated_at",
-            field=models.DateTimeField(auto_now=True),
-        ),
+        # NOTE: UserPresence.updated_at is NOT added here — it was already
+        # created in 0001_initial.py's CreateModel. Adding it again caused:
+        # django.db.utils.ProgrammingError: column "updated_at" of relation
+        # "chat_userpresence" already exists
     ]
