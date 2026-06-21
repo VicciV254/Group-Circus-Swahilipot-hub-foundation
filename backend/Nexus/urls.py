@@ -9,7 +9,7 @@ from debug_auth.debug_auth import debug_auth
 
 urlpatterns = [
     # Admin
-    path('debug-auth/', debug_auth),
+    # path('debug-auth/', debug_auth),
 
     path('django-admin/', admin.site.urls),
 
