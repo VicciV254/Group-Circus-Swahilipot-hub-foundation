@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('notifications', '0002 fm notification fields'),
     ]
-
+ 
     operations = [
         migrations.RemoveField(
             model_name='notificationpreference',
