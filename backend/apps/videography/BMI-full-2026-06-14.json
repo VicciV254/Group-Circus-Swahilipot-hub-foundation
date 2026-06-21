@@ -1,0 +1,565 @@
+{
+  "metadata": {
+    "org": "Broadcast Media Institution (BMI)",
+    "generated": "June 14, 2026",
+    "period_days": 30,
+    "tool_stack": [
+      "pandas",
+      "numpy",
+      "scipy",
+      "matplotlib",
+      "seaborn",
+      "reportlab",
+      "openpyxl",
+      "xlsxwriter",
+      "python-pptx"
+    ]
+  },
+  "kpis": {
+    "active_users": 4,
+    "mfa_enabled": 0,
+    "mfa_pct": 0.0,
+    "api_calls": 366,
+    "api_posts": 298,
+    "api_patches": 68,
+    "avg_ms": 0,
+    "median_ms": 0,
+    "p95_ms": 0,
+    "p99_ms": 0,
+    "max_ms": 0,
+    "tasks_total": 2,
+    "tasks_approved": 1,
+    "tasks_overdue": 0,
+    "equip_total": 0,
+    "equip_value": 0,
+    "equip_repair": 0,
+    "alerts_total": 10,
+    "alerts_resolved": 10,
+    "notif_total": 29,
+    "notif_read": 19,
+    "certs_issued": 3,
+    "feedback_total": 2,
+    "feedback_open": 1,
+    "files_total": 3,
+    "files_kb": 34.7,
+    "report_date": "June 14, 2026"
+  },
+  "time_series": {
+    "daily": [
+      {
+        "date": "2026-06-10",
+        "calls": 1
+      },
+      {
+        "date": "2026-06-11",
+        "calls": 179
+      },
+      {
+        "date": "2026-06-12",
+        "calls": 25
+      },
+      {
+        "date": "2026-06-13",
+        "calls": 99
+      },
+      {
+        "date": "2026-06-14",
+        "calls": 62
+      }
+    ],
+    "hourly": [
+      {
+        "hour": 0,
+        "calls": 0
+      },
+      {
+        "hour": 1,
+        "calls": 0
+      },
+      {
+        "hour": 2,
+        "calls": 24
+      },
+      {
+        "hour": 3,
+        "calls": 49
+      },
+      {
+        "hour": 4,
+        "calls": 9
+      },
+      {
+        "hour": 5,
+        "calls": 2
+      },
+      {
+        "hour": 6,
+        "calls": 4
+      },
+      {
+        "hour": 7,
+        "calls": 43
+      },
+      {
+        "hour": 8,
+        "calls": 11
+      },
+      {
+        "hour": 9,
+        "calls": 6
+      },
+      {
+        "hour": 10,
+        "calls": 1
+      },
+      {
+        "hour": 11,
+        "calls": 3
+      },
+      {
+        "hour": 12,
+        "calls": 21
+      },
+      {
+        "hour": 13,
+        "calls": 1
+      },
+      {
+        "hour": 14,
+        "calls": 5
+      },
+      {
+        "hour": 15,
+        "calls": 13
+      },
+      {
+        "hour": 16,
+        "calls": 0
+      },
+      {
+        "hour": 17,
+        "calls": 1
+      },
+      {
+        "hour": 18,
+        "calls": 16
+      },
+      {
+        "hour": 19,
+        "calls": 57
+      },
+      {
+        "hour": 20,
+        "calls": 19
+      },
+      {
+        "hour": 21,
+        "calls": 73
+      },
+      {
+        "hour": 22,
+        "calls": 8
+      },
+      {
+        "hour": 23,
+        "calls": 0
+      }
+    ]
+  },
+  "breakdowns": {
+    "by_module": [
+      {
+        "module": "chat",
+        "calls": 125,
+        "pct": 34.2
+      },
+      {
+        "module": "fm-report",
+        "calls": 92,
+        "pct": 25.1
+      },
+      {
+        "module": "accounts",
+        "calls": 54,
+        "pct": 14.8
+      },
+      {
+        "module": "notifications",
+        "calls": 21,
+        "pct": 5.7
+      },
+      {
+        "module": "certificates",
+        "calls": 10,
+        "pct": 2.7
+      },
+      {
+        "module": "tasks",
+        "calls": 10,
+        "pct": 2.7
+      },
+      {
+        "module": "file-transfer",
+        "calls": 7,
+        "pct": 1.9
+      },
+      {
+        "module": "auth",
+        "calls": 7,
+        "pct": 1.9
+      },
+      {
+        "module": "ai",
+        "calls": 6,
+        "pct": 1.6
+      },
+      {
+        "module": "attendance",
+        "calls": 6,
+        "pct": 1.6
+      },
+      {
+        "module": "equipment",
+        "calls": 6,
+        "pct": 1.6
+      },
+      {
+        "module": "wifi",
+        "calls": 5,
+        "pct": 1.4
+      },
+      {
+        "module": "feedback",
+        "calls": 5,
+        "pct": 1.4
+      },
+      {
+        "module": "videography",
+        "calls": 4,
+        "pct": 1.1
+      },
+      {
+        "module": "attachees",
+        "calls": 4,
+        "pct": 1.1
+      },
+      {
+        "module": "finance",
+        "calls": 3,
+        "pct": 0.8
+      },
+      {
+        "module": "evaluations",
+        "calls": 1,
+        "pct": 0.3
+      }
+    ],
+    "by_user": [
+      {
+        "user": "David Ochieng",
+        "calls": 18
+      },
+      {
+        "user": "Grace Wanjiku",
+        "calls": 90
+      },
+      {
+        "user": "System Admin",
+        "calls": 258
+      }
+    ],
+    "notifications": [
+      {
+        "type": "emergency_alert",
+        "count": 20
+      },
+      {
+        "type": "certificate_issued",
+        "count": 3
+      },
+      {
+        "type": "task_reviewed",
+        "count": 2
+      },
+      {
+        "type": "task_submitted",
+        "count": 2
+      },
+      {
+        "type": "task_assigned",
+        "count": 2
+      }
+    ]
+  },
+  "performance": {
+    "avg_ms": 0,
+    "median_ms": 0,
+    "p95_ms": 0,
+    "p99_ms": 0,
+    "max_ms": 0,
+    "buckets": {
+      "<100ms": 0,
+      "100-500ms": 0,
+      "500ms-1s": 0,
+      ">1s": 0
+    }
+  },
+  "entities": {
+    "users": [
+      {
+        "id": "b6a3cd16-fe65-427c-a9e9-eba339925fb2",
+        "employee_id": "INTERN-1002",
+        "first_name": "Jane",
+        "last_name": "Muthoni",
+        "role": "broadcast_admin",
+        "is_active": true,
+        "mfa_enabled": false,
+        "date_joined": "2026-06-09T07:50:41.997Z",
+        "last_login": "2026-06-10T12:47:14.603Z",
+        "department__name": null
+      },
+      {
+        "id": "eb43366e-bf3d-4244-b921-2254800bb09c",
+        "employee_id": "STAFF-1001",
+        "first_name": "System",
+        "last_name": "Admin",
+        "role": "system_admin",
+        "is_active": true,
+        "mfa_enabled": false,
+        "date_joined": "2026-06-09T07:50:25.141Z",
+        "last_login": "2026-06-14T20:05:12.677Z",
+        "department__name": null
+      },
+      {
+        "id": "5912771f-4fcc-4c1e-91b4-f15ec0abeb0f",
+        "employee_id": "INTERN-1003",
+        "first_name": "David",
+        "last_name": "Ochieng",
+        "role": "presenter",
+        "is_active": true,
+        "mfa_enabled": false,
+        "date_joined": "2026-06-09T07:51:12.450Z",
+        "last_login": "2026-06-11T13:01:35.729Z",
+        "department__name": null
+      },
+      {
+        "id": "87651f4a-041b-4aae-ac63-c2f7071e2bf8",
+        "employee_id": "INTERN-1004",
+        "first_name": "Grace",
+        "last_name": "Wanjiku",
+        "role": "attachee",
+        "is_active": true,
+        "mfa_enabled": false,
+        "date_joined": "2026-06-09T07:51:03.995Z",
+        "last_login": "2026-06-14T20:19:08.555Z",
+        "department__name": null
+      }
+    ],
+    "tasks": [
+      {
+        "id": "e992e734-c4b3-45bf-bcce-38d92bf4a881",
+        "title": "xcvbnmcf gvbhn",
+        "priority": "low",
+        "status": "approved",
+        "progress_percent": 0,
+        "due_date": "2026-06-11T15:37:00Z",
+        "submitted_at": "2026-06-11T12:52:21.686Z",
+        "reviewed_at": "2026-06-11T12:56:58.529Z",
+        "assigned_to__first_name": "Grace",
+        "assigned_to__last_name": "Wanjiku",
+        "department__name": null
+      },
+      {
+        "id": "8be6319a-8b4f-4e59-966f-470d2678b28c",
+        "title": "vxrdxhfcg",
+        "priority": "low",
+        "status": "rejected",
+        "progress_percent": 0,
+        "due_date": "2026-06-11T16:22:00Z",
+        "submitted_at": "2026-06-11T12:57:24.080Z",
+        "reviewed_at": "2026-06-11T12:58:21.373Z",
+        "assigned_to__first_name": "Grace",
+        "assigned_to__last_name": "Wanjiku",
+        "department__name": null
+      }
+    ],
+    "equipment": [],
+    "alerts": [
+      {
+        "id": "35542bec-1276-4a98-8662-669de2509f3e",
+        "title": "fc gvhbjn",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T12:49:16.237Z",
+        "description": "rctvybhunji"
+      },
+      {
+        "id": "199b775c-66c2-4e11-99b9-81ccb286f7f0",
+        "title": "fgvbhnjmk",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T07:30:56.193Z",
+        "description": "x dcfvgbhnjm"
+      },
+      {
+        "id": "d0ce33e3-d128-4ba5-8322-234a9b406ed8",
+        "title": "Abracadabra",
+        "alert_type": "emergency",
+        "severity": "critical",
+        "resolved": true,
+        "created_at": "2026-06-11T04:01:30.358Z",
+        "description": "ewwekgw"
+      },
+      {
+        "id": "d8c5fe98-5489-41fb-8c8d-15715eee92af",
+        "title": "xexefgwevf  v",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:32:10.407Z",
+        "description": "ewehxegzk"
+      },
+      {
+        "id": "dc84e513-0208-4a24-85eb-547be7c9a316",
+        "title": "ewxhhuf",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:30:14.982Z",
+        "description": "xuwfx fw f"
+      },
+      {
+        "id": "c219ead9-ae77-4c54-9ffb-2601eda3b8ea",
+        "title": "efkffx f",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:27:46.329Z",
+        "description": "hfe fgrv wr"
+      },
+      {
+        "id": "7899eabf-48a1-43aa-8603-7ddff7018570",
+        "title": "wuqfbciewfbrxekg",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:26:12.346Z",
+        "description": "wfbfigv gwfkxv"
+      },
+      {
+        "id": "be294b43-894c-4835-a2f5-8204b7db87e7",
+        "title": "xqwjhbxuihfxfxkq",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:19:32.182Z",
+        "description": "bhxwxvek c"
+      },
+      {
+        "id": "313b45ec-efd7-4455-a9fa-e266039f97dd",
+        "title": "qhw qe",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:16:09.653Z",
+        "description": "bk qh"
+      },
+      {
+        "id": "c1ad744a-66c1-48e0-9a94-2aa1e06ca91e",
+        "title": "qrwfgr",
+        "alert_type": "emergency",
+        "severity": "high",
+        "resolved": true,
+        "created_at": "2026-06-11T03:04:25.145Z",
+        "description": "cwefr4g4"
+      }
+    ],
+    "certificates": [
+      {
+        "id": "d32bf6ab-36e5-449c-8e8f-9ba21c8e7103",
+        "certificate_number": "NX-2026-1D0EC5",
+        "certificate_type": "achievement",
+        "status": "issued",
+        "issue_date": "2026-06-13",
+        "recipient__first_name": "Grace",
+        "recipient__last_name": "Wanjiku",
+        "signed_by_name": "David",
+        "signed_by_title": "System Admin"
+      },
+      {
+        "id": "72760d7d-3b3a-4fe3-83a3-1ef0312393f8",
+        "certificate_number": "NX-2026-22D5CE",
+        "certificate_type": "recommendation",
+        "status": "issued",
+        "issue_date": "2026-06-11",
+        "recipient__first_name": "Grace",
+        "recipient__last_name": "Wanjiku",
+        "signed_by_name": "Daudh",
+        "signed_by_title": "HR"
+      },
+      {
+        "id": "1130ec9e-b459-4380-8c28-bfe59ac96cd3",
+        "certificate_number": "NX-2026-29F1A0",
+        "certificate_type": "completion",
+        "status": "issued",
+        "issue_date": "2026-06-11",
+        "recipient__first_name": "Grace",
+        "recipient__last_name": "Wanjiku",
+        "signed_by_name": "David",
+        "signed_by_title": "Attachee"
+      }
+    ],
+    "feedback": [
+      {
+        "id": "3e928aac-c4fa-46f2-a045-1d1d3880363b",
+        "ticket_number": "TKT-0002",
+        "category": "Wi-Fi",
+        "title": "dzscsg",
+        "priority": "low",
+        "status": "closed",
+        "created_at": "2026-06-11T22:16:33.212Z",
+        "submitted_by__first_name": "Grace",
+        "submitted_by__last_name": "Wanjiku",
+        "admin_response": "",
+        "resolved_at": null
+      },
+      {
+        "id": "2cbb6fa3-4663-40b0-919e-c2fff4ec8b71",
+        "ticket_number": "TKT-0001",
+        "category": "Scheduling",
+        "title": "agewvefx",
+        "priority": "low",
+        "status": "open",
+        "created_at": "2026-06-11T22:15:23.971Z",
+        "submitted_by__first_name": "System",
+        "submitted_by__last_name": "Admin",
+        "admin_response": "",
+        "resolved_at": null
+      }
+    ]
+  },
+  "insights": [
+    {
+      "severity": "critical",
+      "module": "security",
+      "message": "0.0% MFA adoption \u2014 4 accounts without 2FA"
+    },
+    {
+      "severity": "warning",
+      "module": "performance",
+      "message": "P99=0ms, max=0ms \u2014 investigate slow endpoints"
+    },
+    {
+      "severity": "positive",
+      "module": "operations",
+      "message": "10/10 emergency alerts resolved"
+    },
+    {
+      "severity": "positive",
+      "module": "equipment",
+      "message": "0 of 0 equipment items under repair"
+    }
+  ]
+}

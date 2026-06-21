@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "ES2022", // Modern JS features (class fields, top-level await)
+		"useDefineForClassFields": true,
+		"lib": ["ES2022", "DOM", "DOM.Iterable"], // Match target + browser APIs
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"moduleResolution": "bundler", // Optimized for Vite/Webpack
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx", // React 17+ JSX transform
+		"strict": true,
+		"noUnusedLocals": true, // Catch unused variables
+		"noUnusedParameters": true, // Catch unused parameters
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true, // Prevent case-sensitive import issues
+		"paths": {
+			"@/*": ["./src/*"] // Explicit alias for src/*
+		},
+		"ignoreDeprecations": "6.0" // Optional: silences baseUrl deprecation warnings
+	},
+	"include": ["src", "tests"], // Include tests if present
+	"exclude": ["node_modules", "dist"], // Exclude build artifacts
+	"references": [{ "path": "./tsconfig.node.json" }]
+}

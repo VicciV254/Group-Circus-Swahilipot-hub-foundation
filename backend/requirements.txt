@@ -1,0 +1,85 @@
+# Nexus Enterprise — Python Dependencies
+
+# Django Core
+Django
+djangorestframework
+django-cors-headers
+django-filter
+django-extensions
+whitenoise
+drf-nested-routers
+
+# Auth & Security
+djangorestframework-simplejwt
+pyotp
+django-axes
+
+# Database
+psycopg2-binary
+django-redis
+redis
+
+# Async / WebSockets
+channels
+channels-redis
+daphne
+
+# Background Tasks
+celery
+django-celery-beat
+django-celery-results
+django-background-tasks
+
+# File Storage (S3 / MinIO)
+django-storages
+boto3
+
+# PDF Generation
+reportlab
+weasyprint
+
+# Excel / CSV
+openpyxl
+xlsxwriter
+
+# QR Codes
+qrcode[pil]
+Pillow
+
+# Notifications
+africastalking
+requests
+
+# Utils
+python-decouple
+django-environ
+python-dateutil
+pytz
+
+# Monitoring / Logging
+sentry-sdk
+
+# Testing
+pytest
+pytest-django
+factory-boy
+
+# Dev tools
+ipython
+django-debug-toolbar
+
+python-decouple
+gunicorn
+python-dotenv
+
+# Data 
+pandas
+matplotlib
+seaborn
+numpy
+reportlab
+openpyxl
+xlsxwriter
+python-pptx
+
+openrouter

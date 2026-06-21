@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+.git/
+.gitignore
+*.log
+.vite/
+coverage/
+Dockerfile
+Dockerfile.*
+docker-compose*
+README*

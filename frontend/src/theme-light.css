@@ -1,0 +1,120 @@
+/* ─────────────────────────────────────────────────────────────
+   Nexus — Light mode overrides
+   Add this to your global CSS file (e.g. index.css / globals.css)
+   alongside your existing dark-mode variable definitions.
+   ───────────────────────────────────────────────────────────── */
+
+html.light {
+  /* Backgrounds */
+  --color-surface:          #f1f5f9;   /* page background   */
+  --color-surface-card:     #ffffff;   /* sidebar & topbar  */
+  --color-surface-elevated: #f8fafc;   /* cards, dropdowns  */
+  --color-surface-muted:    #e2e8f0;   /* subtle fills      */
+  --color-surface-border:   #e2e8f0;   /* borders           */
+
+  /* Text */
+  --color-text-primary:     #0f172a;
+  --color-text-secondary:   #475569;
+  --color-text-muted:       #94a3b8;
+
+  /* Accent — keep the Nexus blue */
+  --color-nexus-400:        #3b82f6;
+  --color-nexus-500:        #2563eb;
+  --color-nexus-600:        #1d4ed8;
+}
+
+/* ── Tailwind semantic colour remaps for light mode ── */
+html.light .bg-surface          { background-color: var(--color-surface) !important; }
+html.light .bg-surface-card     { background-color: var(--color-surface-card) !important; }
+html.light .bg-surface-elevated { background-color: var(--color-surface-elevated) !important; }
+html.light .bg-surface-muted    { background-color: var(--color-surface-muted) !important; }
+
+html.light .border-surface-border { border-color: var(--color-surface-border) !important; }
+
+/* Sidebar + topbar text */
+html.light .text-white   { color: #0f172a !important; }
+html.light .text-slate-300 { color: #334155 !important; }
+html.light .text-slate-400 { color: #475569 !important; }
+html.light .text-slate-500 { color: #64748b !important; }
+html.light .text-slate-600 { color: #94a3b8 !important; }
+
+/* Active sidebar link */
+html.light .sidebar-link.active {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+html.light .sidebar-link:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Stat cards */
+html.light .stat-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Input fields */
+html.light .input,
+html.light .textarea {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.light .input::placeholder,
+html.light .textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Buttons */
+html.light .btn-secondary {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+html.light .btn-secondary:hover {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .btn-icon {
+  color: #475569 !important;
+}
+html.light .btn-icon:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Cards */
+html.light .card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Data table */
+html.light .data-table th {
+  background-color: #f8fafc !important;
+  color: #64748b !important;
+  border-color: #e2e8f0 !important;
+}
+html.light .data-table td {
+  border-color: #f1f5f9 !important;
+  color: #334155 !important;
+}
+html.light .data-table tr:hover td {
+  background-color: #f8fafc !important;
+}
+
+/* Skeleton loader */
+html.light .skeleton {
+  background-color: #e2e8f0 !important;
+}
+
+/* Chat panel */
+html.light .chat-panel,
+html.light [class*="bg-surface-card"] {
+  background-color: #ffffff !important;
+}
+
+/* Shadow */
+html.light .shadow-elevated {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+}
