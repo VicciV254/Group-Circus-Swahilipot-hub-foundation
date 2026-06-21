@@ -16,7 +16,7 @@ DEBUG = config('DEBUG',) == 'True'
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',') # type: ignore
 
 # ── Apps ──────────────────────────────────────────────────────────────────────
-DJANGO_APPS = [
+DJANGO_APPS = [ 
     'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,7 +65,7 @@ LOCAL_APPS = [
     'apps.knowledge',
     'apps.equipment',
     'apps.projects',
-    'apps.subscriptions',
+    # 'apps.subscriptions',
     'apps.wifi',
     'apps.feedback',
     'apps.filetransfer',
