@@ -19,7 +19,6 @@
 		"paths": {
 			"@/*": ["./src/*"] // Explicit alias for src/*
 		},
-		"ignoreDeprecations": "6.0" // Optional: silences baseUrl deprecation warnings
 	},
 	"include": ["src", "tests"], // Include tests if present
 	"exclude": ["node_modules", "dist"], // Exclude build artifacts
