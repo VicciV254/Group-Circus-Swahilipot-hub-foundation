@@ -264,7 +264,9 @@ export default function MFAPage() {
 								{code.map((digit, i) => (
 									<input
 										key={i}
-										ref={(el) => (inputs.current[i] = el)}
+										ref={(el) => {
+											inputs.current[i] = el;
+										}}
 										type="text"
 										inputMode="numeric"
 										maxLength={1}

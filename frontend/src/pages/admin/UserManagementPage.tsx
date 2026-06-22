@@ -937,13 +937,17 @@ function UserRow({
 						<div className="font-medium text-white text-sm flex items-center gap-1.5">
 							{u.full_name}
 							{u.is_locked && (
-								<Lock size={10} className="text-amber-400" title="Locked out" />
+								<Lock
+									size={10}
+									className="text-amber-400"
+									aria-label="Locked out"
+								/>
 							)}
 							{u.must_change_password && (
 								<Key
 									size={10}
 									className="text-orange-400"
-									title="Must change password"
+									aria-label="Must change password"
 								/>
 							)}
 						</div>
@@ -2081,7 +2085,14 @@ function InviteModal({ depts, branches, onClose, onSuccess }: any) {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		defaultValues: { role: "attachee", days_valid: 7, max_uses: 1 },
+		defaultValues: {
+			role: "attachee",
+			days_valid: 7,
+			max_uses: 1,
+			email: "",
+			branch: "",
+			department: "",
+		},
 	});
 	const [link, setLink] = useState("");
 

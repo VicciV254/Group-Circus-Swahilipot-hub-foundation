@@ -137,6 +137,80 @@ function applyFont(fontId: FontId) {
 	localStorage.setItem("nexus-font", fontId);
 }
 
+// ── Notification sound ───────────────────────────────────────────────────────
+// Plays a short, professional rising alert chime (think iOS/macOS "Tri-tone"
+// style — bright, clearly noticeable, but not harsh) using the Web Audio
+// API — no audio file needed, works offline, and respects browser autoplay
+// rules (a user must have interacted with the page at least once before
+// audio is allowed to play, which is true for any logged-in session in this
+// app).
+let _notifAudioCtx: AudioContext | null = null;
+
+function playNotificationSound() {
+	try {
+		const muted = localStorage.getItem("nexus-notif-sound-muted") === "true";
+		if (muted) return;
+
+		const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+		if (!Ctx) return;
+		if (!_notifAudioCtx) _notifAudioCtx = new Ctx();
+		const ctx = _notifAudioCtx;
+		if (ctx.state === "suspended") ctx.resume();
+
+		// A single "note" is built from a fundamental + a quiet octave overtone,
+		// which gives it a rounder, bell-like timbre instead of a flat beep.
+		// A gentle low-pass filter softens the very top end so it stays clean
+		// and professional rather than buzzy, while keeping enough brightness
+		// to clearly register as "something needs your attention."
+		const playNote = (
+			freq: number,
+			startTime: number,
+			duration: number,
+			peakGain: number,
+		) => {
+			const filter = ctx.createBiquadFilter();
+			filter.type = "lowpass";
+			filter.frequency.value = 5200;
+			filter.connect(ctx.destination);
+
+			const makeOsc = (
+				frequency: number,
+				type: OscillatorType,
+				gainMult: number,
+			) => {
+				const osc = ctx.createOscillator();
+				const gain = ctx.createGain();
+				osc.type = type;
+				osc.frequency.value = frequency;
+				osc.connect(gain);
+				gain.connect(filter);
+
+				gain.gain.setValueAtTime(0, startTime);
+				gain.gain.linearRampToValueAtTime(
+					peakGain * gainMult,
+					startTime + 0.008,
+				);
+				gain.gain.exponentialRampToValueAtTime(0.0008, startTime + duration);
+
+				osc.start(startTime);
+				osc.stop(startTime + duration);
+			};
+
+			makeOsc(freq, "sine", 1); // fundamental
+			makeOsc(freq * 2, "sine", 0.22); // octave overtone for bell-like clarity
+		};
+
+		const now = ctx.currentTime;
+		// A bright, rising three-note chime — clearly reads as an alert without
+		// being jarring. Ascending pitch naturally signals "new/incoming."
+		playNote(740.0, now, 0.16, 0.17); // F#5
+		playNote(932.33, now + 0.1, 0.16, 0.18); // A#5
+		playNote(1244.51, now + 0.2, 0.34, 0.2); // D#6 — held slightly longer to land the alert
+	} catch {
+		/* sound is a nice-to-have — never let it break the app */
+	}
+}
+
 // ── Preferences API ───────────────────────────────────────────────────────────
 const preferencesApi = {
 	get: () => api.get("/accounts/preferences/").then((r) => r.data),
@@ -399,6 +473,16 @@ function PreferencesModal({
 }) {
 	const overlayRef = useRef<HTMLDivElement>(null);
 	const { t } = useTranslation();
+	const [soundEnabled, setSoundEnabled] = useState(
+		() => localStorage.getItem("nexus-notif-sound-muted") !== "true",
+	);
+	const toggleSound = () => {
+		setSoundEnabled((prev) => {
+			const next = !prev;
+			localStorage.setItem("nexus-notif-sound-muted", String(!next));
+			return next;
+		});
+	};
 	const handleOverlayClick = (e: React.MouseEvent) => {
 		if (e.target === overlayRef.current) onClose();
 	};
@@ -472,6 +556,41 @@ function PreferencesModal({
 									width: "18px",
 									height: "18px",
 									transform: isDark ? "translateX(20px)" : "translateX(0)",
+								}}
+							/>
+						</button>
+					</div>
+
+					{/* Notification sound toggle */}
+					<div className="flex items-center justify-between px-4 py-3 rounded-xl bg-surface-elevated border border-surface-border">
+						<div className="flex items-center gap-3">
+							<div className="w-8 h-8 rounded-lg bg-surface-muted flex items-center justify-center">
+								<Bell size={15} className="text-slate-400" />
+							</div>
+							<div>
+								<div className="text-sm font-medium text-white">
+									Notification sound
+								</div>
+								<div className="text-xs text-slate-500">
+									{soundEnabled ? "Plays a ping on new alerts" : "Muted"}
+								</div>
+							</div>
+						</div>
+						<button
+							onClick={toggleSound}
+							style={{ width: "42px", height: "22px" }}
+							className={clsx(
+								"relative rounded-full transition-colors duration-200 flex-shrink-0",
+								soundEnabled ? "bg-Swahilipot-600" : "bg-surface-muted",
+							)}>
+							<span
+								className="absolute top-0.5 left-0.5 bg-white rounded-full shadow transition-transform duration-200"
+								style={{
+									width: "18px",
+									height: "18px",
+									transform: soundEnabled
+										? "translateX(20px)"
+										: "translateX(0)",
 								}}
 							/>
 						</button>
@@ -943,8 +1062,24 @@ export default function AppLayout() {
 	const { data: unreadCount = 0 } = useQuery({
 		queryKey: ["unread-notifications"],
 		queryFn: () => notificationsApi.unreadCount().then((r) => r.data.count),
-		refetchInterval: 30000,
+		refetchInterval: 8000, // was 30s — badge now updates within ~8s of a new notification
+		refetchIntervalInBackground: false, // no need to hammer the API on a hidden tab
+		refetchOnWindowFocus: true, // instant refresh the moment the user comes back to the tab
+		refetchOnReconnect: true, // instant refresh after a dropped connection comes back
 	});
+
+	// ── Play a sound whenever the unread count increases ──────────────────────
+	const prevUnreadCount = useRef<number | null>(null);
+	useEffect(() => {
+		if (
+			prevUnreadCount.current !== null &&
+			unreadCount > prevUnreadCount.current
+		) {
+			playNotificationSound();
+			qc.invalidateQueries({ queryKey: ["notifications-preview"] });
+		}
+		prevUnreadCount.current = unreadCount;
+	}, [unreadCount]);
 	const { data: recentNotifications = [] } = useQuery({
 		queryKey: ["notifications-preview"],
 		queryFn: () =>
@@ -952,7 +1087,10 @@ export default function AppLayout() {
 				.list({ unread: "true" })
 				.then((r) => (r.data.results ?? r.data).slice(0, 5)),
 		enabled: showNotifMenu,
-		refetchInterval: showNotifMenu ? 30000 : false,
+		refetchInterval: showNotifMenu ? 8000 : false,
+		refetchOnWindowFocus: showNotifMenu,
+		staleTime: 0, // always treat as stale so opening the dropdown refetches
+		refetchOnMount: "always", // ignore cached data from a previous (e.g. empty) state
 	});
 
 	const markAllMutation = useMutation({

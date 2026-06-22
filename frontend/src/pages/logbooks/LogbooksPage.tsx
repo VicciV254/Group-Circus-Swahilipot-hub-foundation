@@ -88,7 +88,7 @@ const STATUS_LABELS: Record<string, string> = {
 
 const MOOD_MAP: Record<
 	number,
-	{ label: string; icon: JSX.Element; color: string }
+	{ label: string; icon: React.ReactElement; color: string }
 > = {
 	1: { label: "Very Poor", icon: <Frown size={14} />, color: "text-red-400" },
 	2: { label: "Poor", icon: <Frown size={14} />, color: "text-orange-400" },
@@ -1199,7 +1199,7 @@ function EntryModal({
 		};
 	}
 
-	const TABS: { id: EntryTab; label: string; icon: JSX.Element }[] = [
+	const TABS: { id: EntryTab; label: string; icon: React.ReactElement }[] = [
 		{ id: "details", label: "Details", icon: <FileText size={13} /> },
 		{
 			id: "attachments",

@@ -91,6 +91,7 @@ interface Task {
 	recurrence?: string;
 	created_at?: string;
 	activity?: { text: string; time: string }[];
+	notify_via?: string;
 }
 
 // ─────────────────────────────────────────────

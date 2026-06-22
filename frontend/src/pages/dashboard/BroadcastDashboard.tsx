@@ -55,7 +55,7 @@ export default function BroadcastDashboard() {
 	const { data: recentNews = [] } = useQuery({
 		queryKey: ["recent-news"],
 		queryFn: () =>
-			newsApi.list({ limit: 5 }).then((r) => r.data.results || r.data),
+			newsApi.list({ page_size: 5 }).then((r) => r.data.results || r.data),
 		refetchInterval: 120000,
 	});
 

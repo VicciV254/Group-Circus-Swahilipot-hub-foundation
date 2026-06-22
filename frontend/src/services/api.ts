@@ -61,7 +61,12 @@ export interface User {
 	role_display: string;
 	organisation: string | null;
 	organisation_name: string | null;
-	branch: string | null;
+	branch: {
+		latitude: string;
+		longitude: string;
+		geofence_radius?: number;
+	} | null;
+
 	branch_name: string | null;
 	department: string | null;
 	department_name: string | null;
@@ -864,11 +869,45 @@ export const wifiApi = {
 
 // ── Feedback ───────────────────────────────────────────────────────────────
 export const feedbackApi = {
+	// ── Tickets ──────────────────────────────────────────────────────────────
 	list: (params?: any) => api.get("/feedback/", { params }),
-	detail: (id: string) => api.get("/feedback/" + id + "/"),
-	submit: (data: any) => api.post("/feedback/", data),
-	update: (id: string, data: any) => api.patch("/feedback/" + id + "/", data),
+	get: (id: string) => api.get(`/feedback/${id}/`),
+	submit: (data: FormData) => api.post("/feedback/", data),
+	update: (id: string, data: any) => api.patch(`/feedback/${id}/`, data),
+	delete: (id: string) => api.delete(`/feedback/${id}/`),
+
+	// ── Bulk & Export ─────────────────────────────────────────────────────────
+	bulkUpdate: ({ ids, data }: { ids: string[]; data: any }) =>
+		api.post("/feedback/bulk_update/", { ids, data }),
+
+	export: (params?: any) =>
+		api.get("/feedback/export/", { params, responseType: "blob" }).then((r) => {
+			const url = URL.createObjectURL(new Blob([r.data]));
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = `tickets-${Date.now()}.csv`;
+			a.click();
+			URL.revokeObjectURL(url);
+		}),
+
+	// ── Stats ─────────────────────────────────────────────────────────────────
 	stats: () => api.get("/feedback/stats/"),
+
+	// ── Comments ──────────────────────────────────────────────────────────────
+	addComment: (
+		ticketId: string,
+		data: { body: string; is_internal?: boolean },
+	) => api.post(`/feedback/${ticketId}/comments/`, data),
+
+	deleteComment: (ticketId: string, commentId: string) =>
+		api.delete(`/feedback/${ticketId}/comments/${commentId}/`),
+
+	// ── Attachments ───────────────────────────────────────────────────────────
+	uploadAttachment: (ticketId: string, data: FormData) =>
+		api.post(`/feedback/${ticketId}/attachments/`, data),
+
+	deleteAttachment: (ticketId: string, attId: string) =>
+		api.delete(`/feedback/${ticketId}/attachments/${attId}/`),
 };
 
 // ── File Transfer ──────────────────────────────────────────────────────────

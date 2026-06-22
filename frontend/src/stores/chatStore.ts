@@ -5,7 +5,7 @@ import { persist } from "zustand/middleware";
 import { chatApi, ChatWebSocket } from "../services/chatApi";
 
 export type MessageStatus = "sending" | "sent" | "delivered" | "seen";
-export type MediaType = "image" | "video" | "audio" | "document";
+type MediaType = "image" | "video" | "audio" | "document" | "voice";
 export type CallStatus =
 	| "ringing"
 	| "connected"

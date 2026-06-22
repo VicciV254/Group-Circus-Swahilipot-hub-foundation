@@ -236,15 +236,18 @@ export default function NotificationsPage() {
 					type: typeFilter || undefined,
 				})
 				.then((r) => r.data.results ?? r.data),
-		refetchInterval: 30_000,
+		refetchInterval: 8_000, // was 30s
+		refetchOnWindowFocus: true,
+		refetchOnReconnect: true,
 	});
 
 	const { data: unreadCount = 0 } = useQuery({
 		queryKey: ["unread-notifications"],
 		queryFn: () => notificationsApi.unreadCount().then((r) => r.data.count),
-		refetchInterval: 30_000,
+		refetchInterval: 8_000, // was 30s
+		refetchOnWindowFocus: true,
+		refetchOnReconnect: true,
 	});
-	
 
 	// Sort: unread first, then by date desc
 	const notifications = [...rawNotifications].sort((a: any, b: any) => {

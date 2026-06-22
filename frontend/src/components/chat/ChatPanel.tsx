@@ -279,8 +279,7 @@ function ManagePanel({
 						key={conv.id}
 						conv={conv}
 						isActive={false}
-						showCheckbox
-						onChecked={() => {}}
+						showCheckbox={true}
 						isChecked={checked.has(conv.id)}
 						onCheck={() => toggle(conv.id)}
 						onClick={() => toggle(conv.id)}
@@ -514,8 +513,8 @@ function ThreadPanel({
 		null,
 	);
 
-	const typingTimer = useRef<ReturnType<typeof setTimeout>>();
-	const recTimer = useRef<ReturnType<typeof setInterval>>();
+	const typingTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+	const recTimer = useRef<ReturnType<typeof setInterval>>(undefined);
 	const bottomRef = useRef<HTMLDivElement>(null);
 	const fileRef = useRef<HTMLInputElement>(null);
 

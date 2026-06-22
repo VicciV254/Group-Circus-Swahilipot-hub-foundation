@@ -166,8 +166,8 @@ function exportCSV(url: string, filename: string) {
 const API_BASE =
 	(typeof import.meta !== "undefined" &&
 		(import.meta as any).env?.VITE_API_URL) ||
-	(typeof process !== "undefined" && (process.env as any).REACT_APP_API_URL) ||
 	"/api";
+	
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function FinancePage() {

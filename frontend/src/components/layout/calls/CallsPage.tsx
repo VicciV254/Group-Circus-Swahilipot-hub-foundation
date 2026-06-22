@@ -364,7 +364,7 @@ export default function CallsPage() {
 															Math.round(
 																(count /
 																	(Math.max(
-																		...Object.values(stats.by_studio as any),
+																		...(Object.values(stats.by_studio as any) as number[]),
 																	) || 1)) *
 																	100,
 															),

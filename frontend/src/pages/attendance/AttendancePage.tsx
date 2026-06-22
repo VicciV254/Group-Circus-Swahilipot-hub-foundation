@@ -134,7 +134,9 @@ export default function AttendancePage() {
 			};
 		}
 		// Fall back to matching branch from the branches list
-		const matched = branches.find((b: any) => b.id === user?.branch_id);
+		const matched = branches.find(
+			(b: any) => b.id === (user?.branch as any)?.id,
+		);
 		if (matched?.latitude) {
 			return {
 				latitude: parseFloat(matched.latitude),

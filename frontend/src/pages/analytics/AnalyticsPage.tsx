@@ -391,7 +391,7 @@ function AnimN({
 	suffix?: string;
 }) {
 	const [n, setN] = useState(0);
-	const raf = useRef<number>();
+	const raf = useRef<number>(undefined);
 	useEffect(() => {
 		const start = Date.now();
 		const dur = 900;

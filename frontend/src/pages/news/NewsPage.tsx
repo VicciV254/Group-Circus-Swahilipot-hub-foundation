@@ -5,7 +5,7 @@
 //         breaking/featured toggles, scheduled publish, submission deadline,
 //         read-time, word-count, SEO fields, sources, and full role-gating.
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect, } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -146,7 +146,7 @@ interface DashboardSummary {
 
 const STATUS_META: Record<
 	StoryStatus,
-	{ label: string; badge: string; icon: JSX.Element }
+	{ label: string; badge: string; icon: React.ReactElement }
 > = {
 	draft: { label: "Draft", badge: "badge-slate", icon: <Clock size={10} /> },
 	submitted: {

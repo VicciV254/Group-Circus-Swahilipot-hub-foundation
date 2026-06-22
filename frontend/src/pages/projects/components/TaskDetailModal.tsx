@@ -424,13 +424,13 @@ const TaskDetailModal: React.FC<Props> = ({
 										className={clsx(
 											"text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all",
 											isCurrent
-												? TASK_STATUS_COLORS[s as any] +
+												? TASK_STATUS_COLORS[s as TaskStatus] +
 														" ring-2 ring-offset-1 ring-current"
 												: isPast
 													? "bg-gray-100 text-gray-500"
 													: "text-gray-300 hover:bg-gray-100 hover:text-gray-500",
 										)}>
-										{TASK_STATUS_LABELS[s as any]}
+										{TASK_STATUS_LABELS[s as TaskStatus]}
 									</button>
 									{i < STATUS_PIPELINE.length - 1 && (
 										<svg

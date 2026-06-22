@@ -145,7 +145,7 @@ interface Cohort {
 
 const COHORT_STATUS_META: Record<
 	CohortStatus,
-	{ label: string; cls: string; icon: JSX.Element }
+	{ label: string; cls: string; icon: React.ReactElement }
 > = {
 	pending: {
 		label: "Pending",

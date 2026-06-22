@@ -195,7 +195,7 @@ export function MessageThread({ conversationId, onProfileClick }: Props) {
 
 	const [inputText, setInputText] = useState("");
 	const [isTypingLocal, setIsTypingLocal] = useState(false);
-	const typingTimer = useRef<ReturnType<typeof setTimeout>>();
+	const typingTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 	const bottomRef = useRef<HTMLDivElement>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 

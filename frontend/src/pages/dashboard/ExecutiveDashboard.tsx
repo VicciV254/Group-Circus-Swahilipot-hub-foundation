@@ -22,7 +22,6 @@ import {
 	Newspaper,
 	Wifi,
 	MessageSquare,
-	Certificate,
 } from "lucide-react";
 import {
 	analyticsApi,
@@ -335,7 +334,7 @@ export default function ExecutiveDashboard() {
 		{
 			label: "Certificates issued",
 			value: stats.certificates_issued,
-			icon: Certificate ?? Award,
+			icon: Award,
 			color: "cyan",
 		},
 		{

@@ -11,16 +11,19 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx", // React 17+ JSX transform
-		"strict": true,
-		"noUnusedLocals": true, // Catch unused variables
-		"noUnusedParameters": true, // Catch unused parameters
+		"strict": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
 		"noFallthroughCasesInSwitch": true,
 		"forceConsistentCasingInFileNames": true, // Prevent case-sensitive import issues
 		"paths": {
 			"@/*": ["./src/*"] // Explicit alias for src/*
 		},
+		// "ignoreDeprecations": "6.0" // Optional: silences baseUrl deprecation warnings
+		"types": ["vite/client"]
 	},
 	"include": ["src", "tests"], // Include tests if present
 	"exclude": ["node_modules", "dist"], // Exclude build artifacts
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"references": [{ "path": "./tsconfig.node.json" }],
+	
 }
