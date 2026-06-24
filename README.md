@@ -80,57 +80,171 @@
 
 ### Prerequisites
 
-- Docker Desktop (or Docker + Docker Compose)
-- Node.js 20+ (for local frontend dev)
-- Python 3.12+ (for local backend dev)
+- **Docker Desktop** (or Docker + Docker Compose) - for containerized deployment
+- **Node.js 20+** - for local frontend development
+- **Python 3.12+** - for local backend development
+- **PostgreSQL 15+** - if running backend locally without Docker
+- **Redis 7+** - for caching and background tasks
+- **Git** - for version control
 
-### 1. Docker (Recommended — Full Stack)
+### 1. Docker Setup (Recommended — Full Stack)
+
+This is the fastest way to get the entire system running with all dependencies.
 
 ```bash
-git clone <repo-url>
-cd Nexus-system
+# Clone the repository
+git clone https://github.com/VicciV254/Group-Circus-Swahilipot-hub-foundation.git
+cd Group-Circus-Swahilipot-hub-foundation
+
+# Build and start all services
 docker compose up --build
+
+# Or run in detached mode
+docker compose up --build -d
 ```
 
-Access:
+Access the application:
 
 - **Frontend:** http://localhost:5173
 - **Backend API:** http://localhost:8000/api/v1/
+- **API Documentation:** http://localhost:8000/api/v1/docs/
 - **Django Admin:** http://localhost:8000/django-admin/
-- **MinIO Console:** http://localhost:9001
+- **MinIO Console:** http://localhost:9001 (minioadmin/minioadmin)
+- **Redis Commander:** http://localhost:8081
 
-### 2. Local Development
+**Default Admin Credentials:**
+- Email: admin@Nexus.system
+- Password: Admin@1234567
 
-**Backend:**
+### 2. Local Development Setup
+
+#### Backend Setup
 
 ```bash
+# Navigate to backend directory
 cd backend
+
+# Create virtual environment
 python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+
+# Activate virtual environment
+# Windows:
+.venv\Scripts\activate
+# Linux/Mac:
+source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Configure environment
-cp .env.example .env               # Edit with your DB credentials
+# Configure environment variables
+cp .env.example .env
+# Edit .env with your database credentials and other settings
 
+# Run database migrations
 python manage.py migrate
+
+# Create superuser account
 python manage.py createsuperuser
+
+# Start development server
 python manage.py runserver
 ```
 
-**Frontend:**
+#### Frontend Setup
 
 ```bash
+# Navigate to frontend directory
 cd frontend
+
+# Install dependencies
 npm install
-cp .env.example .env.local         # Set VITE_API_URL=http://localhost:8000/api/v1
+
+# Configure environment variables
+cp .env.example .env.local
+# Edit .env.local and set: VITE_API_URL=http://localhost:8000/api/v1
+
+# Start development server
 npm run dev
 ```
 
+#### Database Setup (Local PostgreSQL)
+
+```bash
+# Create PostgreSQL database
+createdb Nexus_db
+
+# Create database user (optional)
+psql -c "CREATE USER Nexus_user WITH PASSWORD 'your_password';"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE Nexus_db TO Nexus_user;"
+```
+
+#### Redis Setup (Local)
+
+```bash
+# Install Redis (Windows: use WSL or Docker)
+# Linux:
+sudo apt-get install redis-server
+sudo systemctl start redis
+
+# Mac:
+brew install redis
+brew services start redis
+
+# Verify Redis is running
+redis-cli ping
+# Should return: PONG
+```
+
+### 3. Running Tests
+
+```bash
+# Backend tests
+cd backend
+python manage.py test
+
+# Frontend tests
+cd frontend
+npm run test
+```
+
+### 4. Common Issues & Troubleshooting
+
+**Port already in use:**
+```bash
+# Check what's using the port
+netstat -ano | findstr :5173  # Windows
+lsof -i :5173                  # Linux/Mac
+
+# Kill the process or change the port in docker-compose.yml
+```
+
+**Database connection errors:**
+- Ensure PostgreSQL is running
+- Check DB credentials in .env file
+- Verify DB_HOST and DB_PORT are correct
+
+**Permission errors:**
+```bash
+# Linux/Mac: Fix Docker permissions
+sudo chown -R $USER:$USER .
+```
+
+**Build failures:**
+```bash
+# Clear Docker cache and rebuild
+docker compose down -v
+docker compose up --build
+```
+
+### 5. Development Workflow
+
+1. Create a feature branch: `git checkout -b feature/your-feature`
+2. Make changes and test locally
+3. Run linting: `npm run lint` (frontend), `flake8` (backend)
+4. Commit changes: `git commit -m "feat: add your feature"`
+5. Push and create pull request
+
 ---
-
-    admin@Nexus.system
-
-Admin@1234567
 
 ## Environment Variables
 
@@ -303,6 +417,22 @@ docker exec -it Nexus_backend python manage.py createsuperuser
 - **Alert redundancy**: Critical alerts go via email AND SMS simultaneously
 - **Offline resilience**: Mobile apps support offline mode with sync
 - **Scalability**: Redis caching, connection pooling, CDN-ready static files
+
+---
+
+## Contributions
+
+| Name | Contribution |
+| ---- | ------------ |
+| Team Member 1 | --- |
+| Team Member 2 | --- |
+| Team Member 3 | --- |
+| Team Member 4 | --- |
+| Team Member 5 | --- |
+| Team Member 6 | --- |
+| Team Member 7 | --- |
+| Team Member 8 | --- |
+| Team Member 9 | --- |
 
 ---
 
