@@ -92,15 +92,11 @@
 This is the fastest way to get the entire system running with all dependencies.
 
 ```bash
-<<<<<<< HEAD
 # Clone the repository
-git clone https://github.com/David-0804/Group-Circus-Swahilipot-hub-foundation
+git clone https://github.com/David-0804/Group-Circus-Swahilipot-hub-foundation.git
 cd Group-Circus-Swahilipot-hub-foundation
 
 # Build and start all services
-=======
-cd Nexus-system
->>>>>>> d7c71f848aa227df6cea2ad37640f10a40ae682f
 docker compose up --build
 
 # Or run in detached mode
