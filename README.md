@@ -87,7 +87,6 @@
 ### 1. Docker (Recommended — Full Stack)
 
 ```bash
-git clone <repo-url>
 cd Nexus-system
 docker compose up --build
 ```
