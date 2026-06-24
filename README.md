@@ -93,7 +93,7 @@ This is the fastest way to get the entire system running with all dependencies.
 
 ```bash
 # Clone the repository
-git clone https://github.com/VicciV254/Group-Circus-Swahilipot-hub-foundation.git
+git clone https://github.com/David-0804/Group-Circus-Swahilipot-hub-foundation
 cd Group-Circus-Swahilipot-hub-foundation
 
 # Build and start all services
